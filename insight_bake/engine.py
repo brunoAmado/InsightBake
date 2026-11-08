@@ -25,7 +25,37 @@ _INSIGHT_CORE_DIR = Path("C:/Users/bruno/PycharmProjects/InsightCore")
 if _INSIGHT_CORE_DIR.exists() and str(_INSIGHT_CORE_DIR) not in sys.path:
     sys.path.insert(0, str(_INSIGHT_CORE_DIR))
 
-from insight_core_io import assert_no_binary_blob_in_db_row, scrub_pt_eu_pii_and_byok_secrets
+from insight_core_io import (
+    assert_no_binary_blob_in_db_row,
+    filter_point_in_time_records,
+    scrub_pt_eu_pii_and_byok_secrets,
+)
+
+
+ASAE_HACCP_BITEMPORAL_LOT_AND_COST_TABLE: List[Dict[str, Any]] = [
+    {
+        "record_id": "BAKE-LOT-2025-H1",
+        "service_domain": "InsightBake",
+        "country_code": "PT",
+        "title": "Lote ASAE HACCP 2025 & Custos Matérias-Primas 2025 (Chocolate Belga €14.50/kg, Manteiga €7.80/kg)",
+        "effective_from": "2025-01-01",
+        "effective_to": "2025-12-31",
+        "superseded_by": "BAKE-LOT-2026-ACTIVE",
+        "ingredient_cost_multiplier": 0.88,
+        "haccp_lot_certificate": "ASAE-CERT-2025-PT-0891",
+    },
+    {
+        "record_id": "BAKE-LOT-2026-ACTIVE",
+        "service_domain": "InsightBake",
+        "country_code": "PT",
+        "title": "Lote ASAE HACCP 2026 & Custos Matérias-Primas 2026 (Chocolate Belga €16.80/kg, Manteiga €8.90/kg)",
+        "effective_from": "2026-01-01",
+        "effective_to": None,
+        "superseded_by": None,
+        "ingredient_cost_multiplier": 1.0,
+        "haccp_lot_certificate": "ASAE-CERT-2026-PT-4412",
+    },
+]
 
 
 EU_14_MANDATORY_ALLERGENS: Dict[str, str] = {
@@ -321,12 +351,21 @@ def design_3d_cake_and_production_sheet(
         },
         "comfyui_controlnet_render": comfyui_controlnet_spec,
         "logistics_and_haccp_cold_chain": {
-            "powered_by": ["SetMiddle Insight™ · Fleet (:4026)", "SetMiddle Insight™ · Sensor (:4025)"],
+            "powered_by": [
+                "SetMiddle Insight™ · Fleet (:4026)",
+                "SetMiddle Insight™ · Sensor (:4025)",
+                "SetMiddle Insight™ · Timeline (Bi-Temporal ASAE Lot & Cost Traceability)",
+            ],
             "required_transport_box_cm": f"{box_width_cm} x {box_width_cm} x {box_height_cm} cm",
             "refrigerated_van_target_temp_c": "+2.0 °C to +5.0 °C (ASAE Reg. CE 852/2004)",
             "max_safe_ambient_display_temp_c": frosting["max_ambient_temp_c"],
             "max_safe_cornering_g_force": 0.35,
             "non_slip_silicone_mat_required": True,
+            "bitemporal_haccp_lot_traceability": filter_point_in_time_records(
+                records=ASAE_HACCP_BITEMPORAL_LOT_AND_COST_TABLE,
+                point_in_time_date=datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                enforce_rls=False,
+            ),
         },
     }
 
