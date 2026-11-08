@@ -1,0 +1,27 @@
+{
+  "status": "ok",
+  "taught_by": "ChronicleRAG Golden Cortex (v2.8)",
+  "synced_at": "2026-11-08T13:21:41Z",
+  "service_name": "InsightBake",
+  "cluster_id": "InsightBake_and_InsightPastelaria",
+  "specialty": "Industrial Bakery Arrhenius/Monod Sourdough Fermentation, Baker's % Scaling & Bi-Temporal HACCP (:4030)",
+  "autonomous_parallel_execution_when_chronicle_busy": true,
+  "drip_and_retry_policy": {
+    "drip_interval_sec": 15.0,
+    "fast_retry_delay_sec": 30.0,
+    "deferred_retry_delay_sec": 3600.0
+  },
+  "enforced_rules": [
+    "RULE-11 (PT/EU Statutory Governance: CNPD Lei 58/2019, EU AI Act 2024/1689, DL 82/2022 WCAG 2.2 AA, NIS2/CRA)",
+    "RULE-12 (Compact <10KB Payloads & Token-Budget Guard)",
+    "RULE-13 (ChronicleRAG-First Retrieval & 4-Tier Zero-Paid-Token LLM Failover)",
+    "RULE-14 (SetMiddle Specialty Delegation & Parallel Execution When ChronicleRAG Is Occupied)",
+    "RULE-15 (Slow Drip-Pace Execution & Automatic 1-Hour Retry Queue on Upstream Failure)",
+    "RULE-CA-08 (Full 38-Repo SetMiddle & InsightCore Catalog Coverage + DEMO/DEV Branch Parity)",
+    "RULE-CA-09 (Centralized BiTemporalPointInTimeEngine via InsightTimeline :8095 + 1-Line InsightCore Facade)",
+    "RULE-CA-10 (InsightCode 5-Layer PostgreSQL/pgvector/Apache AGE DDL & BDD Scenario AST Cartography)",
+    "RULE-CA-11 (Universal ChronicleRAG Teacher-Student Packet Synchronization Across All Specialties)"
+  ],
+  "bitemporal_engine_delegate": "insight_core_io.BiTemporalPointInTimeEngine -> insight_timeline.engine (:8095)",
+  "ast_cartographer_delegate": "insight_code.engine.extract_polyglot_ast_map (:4013)"
+}
