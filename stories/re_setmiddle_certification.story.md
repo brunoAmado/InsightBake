@@ -1,7 +1,7 @@
 # Certified End-to-End User Story & Time-Lapse KPI Contract: InsightBake (`SetMiddle Insight™`)
 
 - **Historical Continuity Verified**: `2022–2026` (Legacy Repo Docs + OpenAI ChatGPT + Gemini Web + Antigravity IDE + Git Commits)
-- **Ingested Project-Root Documentation (`CA-ERR-07` Zero-AI-Chat Fallback)**: `1` file(s) in `C:/Users/bruno/PycharmProjects/InsightBake`
+- **Ingested Project-Root Documentation (`CA-ERR-07` Zero-AI-Chat Fallback)**: `4` file(s) in `C:/Users/bruno/PycharmProjects/InsightBake`
 - **Supervised & Corrected By**: `ChronicleRAG (:8765)` + `Context-Assistant (:8090)`
 - **Service Port & Co-Hosted Demo**: Port `:4030` · `/projects/insight-bake`
 - **Primary Hero KPI**: `3D PARAMETRIC + CONTROLNET CAKE ENGINE` (`0 HALLUCINATION`)
@@ -14,6 +14,9 @@
 
 ## Ingested Legacy & Project-Root Documentation Grounding
 - `README.md`
+- `docs/ARCHITECTURE.md`
+- `wiki/Home.md`
+- `wiki/_Sidebar.md`
 
 ## Verified Domain Capabilities
 - Standalone Benefit: Interactive 3D Three.js multi-tier cake configurator (/api/bake/studio) with exact wedding/party slice geometry, internal polypropylene dowel + center skewer structural physics, and gram-accurate recipe BOM
